@@ -1,0 +1,54 @@
+.centered {
+    text-align: center;
+}
+
+.icon-48-ipfilters {
+      background-image: url(../images/l_ipfilters.png);
+      padding-left:60px!important;
+}
+
+.icon-48-ipfilter {
+      background-image: url(../images/l_ipfilters.png);
+      padding-left:60px!important;
+}
+
+.icon-48-inputfilters {
+      background-image: url(../images/l_inputfilters.png);
+      padding-left:60px!important;
+}
+
+.icon-48-inputfilter {
+      background-image: url(../images/l_inputfilters.png);
+      padding-left:60px!important;
+}
+
+.icon-48-outputfilters {
+      background-image: url(../images/l_outputfilters.png);
+      padding-left:60px!important;
+}
+
+.icon-48-outputfilter {
+      background-image: url(../images/l_outputfilters.png);
+      padding-left:60px!important;
+}
+
+.icon-48-botscoutrecords {
+      background-image: url(../images/l_botscoutrecords.png);
+      padding-left:60px!important;
+}
+
+.icon-48-botscout {
+      background-image: url(../images/l_botscoutrecords.png);
+      padding-left:60px!important;
+}
+
+.icon-48-logs {
+      background-image: url(../images/l_logs.png);
+      padding-left:60px!important;
+}
+
+.icon-48-log {
+      background-image: url(../images/l_logs.png);
+      padding-left:60px!important;
+}
+

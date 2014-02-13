@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+              <field name="id" type="text" default="0" label="COM_JHACKGUARD_FORM_LBL_INPUTFILTER_ID"
+            readonly="true" class="readonly"
+            description="JGLOBAL_FIELD_ID_DESC" /> 
+
+       <field name="created_by" type="createdby" default="" 
+            label="COM_JHACKGUARD_FORM_LBL_INPUTFILTER_CREATED_BY"
+            description="COM_JHACKGUARD_FORM_DESC_INPUTFILTER_CREATED_BY"  /> 
+
+       <field name="name" type="text"
+                
+            label="COM_JHACKGUARD_FORM_LBL_INPUTFILTER_NAME"
+            description="COM_JHACKGUARD_FORM_DESC_INPUTFILTER_NAME" 
+                
+                
+                 required="true" 
+            filter="safehtml" /> 
+
+        <field
+    		name="code"
+			type="editor"
+			editor="codemirror|none"
+			buttons="true"
+			label="COM_JHACKGUARD_FORM_LBL_INPUTFILTER_CODE"
+			description="COM_JHACKGUARD_FORM_DESC_INPUTFILTER_CODE"
+			height="200px"
+			rows="20"
+			cols="80"
+            required="true"
+			filter="raw" />
+
+       <field name="rule_action" type="editor"
+            label="COM_JHACKGUARD_FORM_LBL_INPUTFILTER_RULE_ACTION"
+            description="COM_JHACKGUARD_FORM_DESC_INPUTFILTER_RULE_ACTION" 
+            editor="codemirror|none"
+            buttons="no"
+            required="false" 
+            height="200px"
+    		rows="20"
+			cols="80"
+			filter="raw" /> 
+
+         <field
+        name="state"
+        type="list"
+        label="JSTATUS"
+        description="JFIELD_PUBLISHED_DESC"
+        class="inputbox"
+        size="1"
+        default="1">
+        <option value="1">JPUBLISHED</option>
+        <option value="0">JUNPUBLISHED</option>
+    </field> 
+
+        <field name="checked_out" type="hidden" filter="unset" />
+        <field name="checked_out_time" type="hidden" filter="unset" />
+
+	</fieldset>
+
+</form>

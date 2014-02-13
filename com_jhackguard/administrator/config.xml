@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<fieldset name="component"
+		label="COM_JHACKGUARD_COMPONENT_LABEL"
+		description="COM_JHACKGUARD_COMPONENT_DESC"
+	>
+
+        <field name="enabled"
+             type="radio"
+             class="btn-group"
+             default="1"
+             label="COM_JHACKGUARD_ENABLED"
+             description="COM_JHACKGUARD_ENABLED_DESC">
+                 <option value="1">JYES</option>
+                 <option value="0">JNO</option>
+         </field>
+         
+         <field name="log_level"
+             type="radio"
+             class="btn-group"
+             default="1"
+             label="COM_JHACKGUARD_LOG_LEVEL"
+             description="COM_JHACKGUARD_LOG_LEVEL_DESC">
+                 <option value="0">JNONE</option>
+                 <option value="1">COM_JHACKGUARD_JSTANDARD</option>
+                 <option value="2">COM_JHACKGUARD_JDEBUG</option>
+         </field>
+
+         <field name="log_garbage_collection" 
+            type="text" 
+            default="7" 
+            label="COM_JHACKGUARD_LOGS_GARBAGE_COLLECTION" 
+            description="COM_JHACKGUARD_LOGS_GARBAGE_COLLECTION_DESC" 
+            size="10" />
+
+        <field name="license_key" 
+            type="text" 
+            default="free-version" 
+            label="COM_JHACKGUARD_LICENSE_KEY" 
+            description="COM_JHACKGUARD_LICENSE_KEY_DESC"/>
+             
+        <field name="note22" type="note" class="alert alert-info" label="COM_JHACKGUARD_ADMIN_ADDITIONAL_LABEL" description="COM_JHACKGUARD_ADMIN_ADDITIONAL_DESC" />
+        <field name="admin_protection"
+             type="radio"
+             class="btn-group"
+             default="0"
+             label="COM_JHACKGUARD_ADDITIONAL_ADMIN_PASSWORD"
+             description="COM_JHACKGUARD_ADDITIONAL_ADMIN_PASSWORD_DESC">
+                 <option value="1">JYES</option>
+                 <option value="0">JNO</option>
+         </field>
+         <field name="admin_keyword" 
+            type="text" 
+            default="secret" 
+            label="COM_JHACKGUARD_ADDITIONAL_ADMIN_KEYWORD" 
+            description="COM_JHACKGUARD_ADDITIONAL_ADMIN_KEYWORD_DESC" 
+            size="10" />
+
+
+
+            <field name="note22-1" type="note" class="alert alert-info" label="COM_JHACKGUARD_ADMIN_ADDITIONAL_LABEL_2" description="COM_JHACKGUARD_ADMIN_ADDITIONAL_DESC_2" />
+
+            <field name="whitelisted_groups" type="usergroup" default="" label="COM_JHACKGUARD_ADMIN_WHITELISTED_GROUPS" description="" multiple="multiple"/>
+	</fieldset>
+    
+    <fieldset name="file_uploads"
+        description="COM_JHACKGUARD_FUPLOADS_FIELDSET_DESCRIPTION"
+        label="COM_JHACKGUARD_FUPLOADS_FIELDSET_LABEL"
+    >
+        <field name="disable_uploads"
+             type="radio"
+             class="btn-group"
+             default="0"
+             label="COM_JHACKGUARD_DISABLE_UPLOADS"
+             description="COM_JHACKGUARD_DISABLE_UPLOADS_DESC">
+                 <option value="1">JYES</option>
+                 <option value="0">JNO</option>
+         </field>
+         
+        <field name="scan_uploads"
+             type="radio"
+             class="btn-group"
+             default="1"
+             label="COM_JHACKGUARD_SCAN_UPLOADS"
+             description="COM_JHACKGUARD_SCAN_UPLOADS_DESC">
+                 <option value="1">JYES</option>
+                 <option value="0">JNO</option>
+        </field> 
+        
+        <field name="use_cymru"
+             type="radio"
+             class="btn-group"
+             default="1"
+             label="COM_JHACKGUARD_SCAN_CYMRU"
+             description="COM_JHACKGUARD_SCAN_CYMRU_DESC">
+                 <option value="1">JYES</option>
+                 <option value="0">JNO</option>
+        </field> 
+        
+    </fieldset>
+    
+    <fieldset name="botscout"
+        description="COM_JHACKGUARD_BOTSCOUT_FIELDSET_DESCRIPTION"
+        label="COM_JHACKGUARD_BOTSCOUT_FIELDSET_LABEL"
+    >
+        <field name="botscout_enabled"
+             type="radio"
+             class="btn-group"
+             default="0"
+             label="COM_JHACKGUARD_BOTSCOUT_ENABLED"
+             description="COM_JHACKGUARD_BOTSCOUT_ENABLED_DESC">
+                 <option value="1">JYES</option>
+                 <option value="0">JNO</option>
+         </field>
+         
+         <field name="botscout_user_registration"
+             type="radio"
+             class="btn-group"
+             default="0"
+             label="COM_JHACKGUARD_BOTSCOUT_USER_REGISTRATION"
+             description="COM_JHACKGUARD_BOTSCOUT_USER_REGISTRATION_DESC">
+                 <option value="1">JYES</option>
+                 <option value="0">JNO</option>
+         </field>
+        
+        <field name="botscout_api" 
+            type="text" 
+            default="" 
+            label="COM_JHACKGUARD_BOTSCOUT_API" 
+            description="COM_JHACKGUARD_BOTSCOUT_API_DESC" 
+            size="10" />
+        
+    </fieldset>
+
+	<fieldset name="permissions"
+		description="JCONFIG_PERMISSIONS_DESC"
+		label="JCONFIG_PERMISSIONS_LABEL"
+	>
+
+		<field 
+            name="rules" 
+            type="rules"
+			component="com_jhackguard"
+            class="inputbox"
+			filter="rules"
+			validate="rules"
+			label="JCONFIG_PERMISSIONS_LABEL"
+			section="component" />
+	</fieldset>
+
+</config>

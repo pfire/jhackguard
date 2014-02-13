@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+              <field name="id" type="text" default="0" label="COM_JHACKGUARD_FORM_LBL_LOG_ID"
+            readonly="true" class="readonly"
+            description="JGLOBAL_FIELD_ID_DESC" /> 
+
+       <field name="severity" type="text"
+                
+            label="COM_JHACKGUARD_FORM_LBL_LOG_SEVERITY"
+            description="COM_JHACKGUARD_FORM_DESC_LOG_SEVERITY" 
+                 default="Debug" 
+                
+                
+            readonly="true" /> 
+
+       <field name="ip_address" type="text"
+                
+            label="COM_JHACKGUARD_FORM_LBL_LOG_IP_ADDRESS"
+            description="COM_JHACKGUARD_FORM_DESC_LOG_IP_ADDRESS" 
+                
+                
+                
+            readonly="true"
+            filter="raw" /> 
+
+       <field name="user_agent" type="text"
+                
+            label="COM_JHACKGUARD_FORM_LBL_LOG_USER_AGENT"
+            description="COM_JHACKGUARD_FORM_DESC_LOG_USER_AGENT" 
+                
+                
+                
+            readonly="true" /> 
+
+       <field name="message" type="textarea"
+                
+            label="COM_JHACKGUARD_FORM_LBL_LOG_MESSAGE"
+            description="COM_JHACKGUARD_FORM_DESC_LOG_MESSAGE" 
+                
+                
+                
+            cols="100"
+            rows="8"
+            filter="raw" /> 
+
+       <field name="time" type="text" size="40" class="inputbox"
+        
+            label="COM_JHACKGUARD_FORM_LBL_LOG_TIME"
+            description="COM_JHACKGUARD_FORM_DESC_LOG_TIME" 
+         default="0000-00-00 00:00:00" 
+        
+        
+        filter="safehtml" />
+
+	</fieldset>
+
+</form>
