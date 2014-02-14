@@ -11,7 +11,7 @@
  <description></description>
  <update>http://www.jhackguard.com/update</update>
  <files folder="packages">
-   <file type="component" id="com_jhackguard" >com_jhackguard-2.2.3.zip</file>
-   <file type="plugin" id="plg_jhackguard" group="system">plg_jhackguard-2.2.3.zip</file>
+   <file type="component" id="com_jhackguard" >com_jhackguard.zip</file>
+   <file type="plugin" id="plg_jhackguard" group="system">plg_jhackguard.zip</file>
  </files>
 </extension>

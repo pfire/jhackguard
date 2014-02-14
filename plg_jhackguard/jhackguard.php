@@ -325,8 +325,13 @@ class PlgSystemJhackguard extends JPlugin
         if(file_exists(JPATH_ADMINISTRATOR.'/components/com_jhackguard/data/input_rules.php') AND !file_exists(JPATH_ADMINISTRATOR.'/components/com_jhackguard/data/.disable_input_rules'))
         {
             require_once(JPATH_ADMINISTRATOR.'/components/com_jhackguard/data/input_rules.php');
-            $rules = new JHackGuard_Input_Filters();
-            $rules->run();
+            if (class_exists('JHackGuard_Input_Filters')) {
+                $rules = new JHackGuard_Input_Filters();
+                $rules->run();
+            } else {
+                $this->add_log('Cannot locate JHackGuard_Input_Filters class in data/input_rules.php. Perhaps no rules have been defined yet.','debug');
+            }
+            
         } else {
             $this->add_log('No input filters found or .disable_input_rules was defined.','debug');
         }
