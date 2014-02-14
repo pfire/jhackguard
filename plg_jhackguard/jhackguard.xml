@@ -14,4 +14,7 @@
 		<filename>index.html</filename>
 		<filename>LICENSE.txt</filename>
 	</files>
+	<updateservers>
+                <server type="extension" name="jHackGuard Plugin Updates">http://www.jhackguard.com/updates/plg_jhackguard.xml</server>
+        </updateservers>
 </extension>

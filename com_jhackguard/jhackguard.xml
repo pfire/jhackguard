@@ -63,4 +63,7 @@
 			<language tag="en-GB">language/en-GB.com_jhackguard.sys.ini</language>
         </languages>
     </administration>
+	<updateservers>
+   		<server type="extension" name="jHackGuard Component Updates">http://www.jhackguard.com/updates/com_jhackguard.xml</server>
+	</updateservers>
 </extension>
