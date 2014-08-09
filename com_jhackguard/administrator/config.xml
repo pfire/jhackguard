@@ -34,7 +34,7 @@
             size="10" />
 
         <field name="license_key" 
-            type="text" 
+            type="hidden" 
             default="free-version" 
             label="COM_JHACKGUARD_LICENSE_KEY" 
             description="COM_JHACKGUARD_LICENSE_KEY_DESC"/>

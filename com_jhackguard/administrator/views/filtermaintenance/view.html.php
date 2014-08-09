@@ -37,7 +37,7 @@ class JhackguardViewFiltermaintenance extends JViewLegacy
 		parent::display($tpl);
 	}
     
-        /**
+   /**
 	 * Add the page title and toolbar.
 	 *
 	 * @since	1.6
@@ -47,9 +47,9 @@ class JhackguardViewFiltermaintenance extends JViewLegacy
 		require_once JPATH_COMPONENT.'/helpers/jhackguard.php';
 
 		$state	= $this->get('State');
-
 		JToolBarHelper::title(JText::_('COM_JHACKGUARD_TITLE_FILTERMAINTENANCE'), 'filtermaintenance.png');
-    
+        JToolBarHelper::preferences('com_jhackguard');
+ 
         //Set sidebar action - New in 3.0
 		JHtmlSidebar::setAction('index.php?option=com_jhackguard&view=filtermaintenance');
         

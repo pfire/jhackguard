@@ -21,7 +21,7 @@ class JhackguardControllerOndemandscans extends JControllerAdmin
 	 * Proxy for getModel.
 	 * @since	1.6
 	 */
-	public function getModel($name = 'ondemandscan', $prefix = 'JhackguardModel')
+	public function getModel($name = 'ondemandscan', $prefix = 'JhackguardModel', $config=array())
 	{
 		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
 		return $model;
@@ -145,11 +145,11 @@ class JhackguardControllerOndemandscans extends JControllerAdmin
 	    		{
 	    			if($it->getSize() > 0 AND $it->getSize() < $maxSize)
 	    			{
-	    				//We also do not need empty files or files bigger than 5MB. TODO: make it configurable!
+	    				//We also do not need empty files or files bigger than 5MB.
 	    				$total_count++;
 	    				if($partial_stop > 0 AND $partial_stop > $total_count)
 	    				{
-	    					$it->next(); //Boo..
+	    					$it->next(); 
 	    					continue; //We don't want these items. We indexed them the last run.
 	    				}
 	    				$files[] = $it->getRealPath();
@@ -227,6 +227,8 @@ class JhackguardControllerOndemandscans extends JControllerAdmin
 		$ignoreFiles = array(
 				JPATH_ROOT.'/libraries/phpmailer/smtp.php', //The standard SMTP mailer of Joomla.
 				JPATH_ROOT.'/libraries/joomla/microdata/types.json',
+				JPATH_ROOT.'/administrator/components/com_jhackguard/data/input_rules.php', //Our input rules.
+				JPATH_ROOT.'/administrator/components/com_jhackguard/data/temp_rules.php', //Our input rules temp file.
 				JPATH_ROOT.'/administrator/components/com_jhackguard/data/scans/rules.php', //Our own security rules
 				JPATH_ROOT.'/media/editors/codemirror/js/php.js', // Default codemirror php tags, contains eval and pregmatch keys
 				JPATH_ROOT.'/media/editors/tinymce/tinymce.min.js' // Same as codemirror
@@ -372,7 +374,7 @@ class JhackguardControllerOndemandscans extends JControllerAdmin
         $query->from($db->quoteName('#__jhackguard_scan_hits'));
         $query->where($db->quoteName('scan_id') . ' = '. $db->quote($id));
         $query->order('id ASC');
-        $db->setQuery($query,$start,$maxFiles);
+        $db->setQuery($query);
         $list = $db->loadObjectList();
 
         //This is our response container.

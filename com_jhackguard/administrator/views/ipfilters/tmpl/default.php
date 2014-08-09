@@ -116,6 +116,9 @@ if (!empty($this->extra_sidebar)) {
 				<th class='left'>
 				<?php echo JHtml::_('grid.sort',  'COM_JHACKGUARD_IPFILTERS_EXPIRES', 'a.expires', $listDirn, $listOrder); ?>
 				</th>
+				<th class='left'>
+				<?php echo JHtml::_('grid.sort',  'Type', 'a.rule_type', $listDirn, $listOrder); ?>
+				</th>
                 <th class='left'>
     			<?php echo JHtml::_('grid.sort',  'COM_JHACKGUARD_IPFILTERS_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
 				</th>
@@ -196,6 +199,18 @@ if (!empty($this->extra_sidebar)) {
                     <a href="<?php echo JRoute::_('index.php?option=com_jhackguard&task=ipfilter.edit&id='.(int) $item->id); ?>">
 					<?php echo $item->expires; ?>
                     </a>
+				</td>
+		<td>
+                	<?php
+					if($item->rule_type == "wl")
+					{
+						echo("<font color='green'>Whitelisted</font>");
+					}                   
+					else 
+					{
+						echo("<font color='red'>Blacklisted</font>");
+					}
+					?>
 				</td>
                 <td>
                     <a href="<?php echo JRoute::_('index.php?option=com_jhackguard&task=ipfilter.edit&id='.(int) $item->id); ?>">

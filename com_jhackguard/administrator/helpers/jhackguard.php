@@ -28,8 +28,24 @@ class JhackguardHelper
             JText::_('COM_JHACKGUARD_PLUGIN_RULES_CACHE_REBUILD_NEEDED').' <a href="'. JURI::current().'?option=com_jhackguard&view=filtermaintenance">'.JText::_('COM_JHACKGUARD_TITLE_FILTERMAINTENANCE').'</a>',     
             'warning');  
         }
-        
-        
+
+		//Perform input rules search.
+		// Get a db connection.
+        $db = JFactory::getDbo();
+
+        //Fetch the output filters from the database.
+        $query = $db->getQuery(true);
+        $query->select($db->quoteName(array('id')));
+        $query->from($db->quoteName('#__jhackguard_input_filters'));
+        $db->setQuery($query);
+        $list = $db->loadObjectList();
+       	if(!count($list))
+		{
+			JFactory::getApplication()->enqueueMessage(
+			'There are currently no input filters enabled. If you have just installed the extension, please navigate to <a href="'. JURI::current().'?option=com_jhackguard&view=filtermaintenance">Filter Maintenance</a> page and click on the \'Update Rules\' button, in order to fetch the latest filters for your app.','warning'); 
+ 		}
+		unset($db,$query,$list);
+
 		JHtmlSidebar::addEntry(
 			JText::_('COM_JHACKGUARD_TITLE_IPFILTERS'),
 			'index.php?option=com_jhackguard&view=ipfilters',
