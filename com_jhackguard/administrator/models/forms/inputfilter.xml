@@ -30,6 +30,7 @@
 			rows="20"
 			cols="80"
             required="true"
+			hide="readmore,pagebreak,image,article,toogle editor"
 			filter="raw" />
 
        <field name="rule_action" type="editor"
