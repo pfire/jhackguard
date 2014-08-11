@@ -66,11 +66,6 @@ class JhackguardHelper
 			'index.php?option=com_jhackguard&view=botscoutrecords',
 			$vName == 'botscoutrecords'
 		);
-		JHtmlSidebar::addEntry(
-			JText::_('COM_JHACKGUARD_TITLE_LOGS'),
-			'index.php?option=com_jhackguard&view=logs',
-			$vName == 'logs'
-		);
         
         JHtmlSidebar::addEntry(
     		JText::_('COM_JHACKGUARD_TITLE_FILTERMAINTENANCE'),
@@ -83,6 +78,12 @@ class JhackguardHelper
 			'index.php?option=com_jhackguard&view=ondemandscans',
 			$vName == 'ondemandscans'
 		);
+
+		JHtmlSidebar::addEntry(
+            JText::_('COM_JHACKGUARD_TITLE_LOGS'),
+            'index.php?option=com_jhackguard&view=logs',
+            $vName == 'logs'
+        );
 
 	}
 
