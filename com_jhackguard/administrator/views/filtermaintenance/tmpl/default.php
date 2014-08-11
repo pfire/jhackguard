@@ -97,6 +97,7 @@ $document->addStyleSheet('components/com_jhackguard/assets/css/jhackguard.css');
         function clear_console()
         {
             $("#j_console").html("");
+			$("#j_console_container").removeClass("hide");
         }
         
         function rebuild_rules()
@@ -239,7 +240,7 @@ if (!empty($this->extra_sidebar)) {
               </div>
 	</div>
     <hr/>
-    <div class="row-fluid span10 well">
+    <div id ="j_console_container" class="row-fluid span10 well hide">
         <div id='j_console'><center> No tasks currently running.</center></div>
     </div>
     
