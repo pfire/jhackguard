@@ -228,6 +228,7 @@ class JhackguardControllerOndemandscans extends JControllerAdmin
 				JPATH_ROOT.'/libraries/phpmailer/smtp.php', //The standard SMTP mailer of Joomla.
 				JPATH_ROOT.'/libraries/joomla/microdata/types.json',
 				JPATH_ROOT.'/administrator/components/com_jhackguard/data/input_rules.php', //Our input rules.
+                JPATH_ROOT.'/administrator/components/com_jhackguard/data/backups/input_rules.backup.php', //Backup of our input rules.
 				JPATH_ROOT.'/administrator/components/com_jhackguard/data/temp_rules.php', //Our input rules temp file.
 				JPATH_ROOT.'/administrator/components/com_jhackguard/data/scans/rules.php', //Our own security rules
 				JPATH_ROOT.'/media/editors/codemirror/js/php.js', // Default codemirror php tags, contains eval and pregmatch keys
