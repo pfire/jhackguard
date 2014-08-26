@@ -35,8 +35,6 @@
 
 			<menu link="option=com_jhackguard&amp;view=logs" view="logs" img="components/com_jhackguard/assets/images/s_logs.png" alt="Jhackguard/Logs">COM_JHACKGUARD_TITLE_LOGS</menu>
 
-			<menu link="option=com_jhackguard&amp;view=ondemandscans" view="ondemandscans" img="components/com_jhackguard/assets/images/s_ondemandscans.png" alt="Jhackguard/Ondemandscans">COM_JHACKGUARD_TITLE_ONDEMANDSCANS</menu>
-
         </submenu>
         <files folder="administrator">
             <filename>access.xml</filename>

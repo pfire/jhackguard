@@ -72,12 +72,12 @@ class JhackguardHelper
 			'index.php?option=com_jhackguard&view=filtermaintenance',
 			$vName == 'filtermaintenance'
 		);
-        
+      	/* This feature is obsolete and will be completely removed in a future release 
 		JHtmlSidebar::addEntry(
 			JText::_('COM_JHACKGUARD_TITLE_ONDEMANDSCANS'),
 			'index.php?option=com_jhackguard&view=ondemandscans',
 			$vName == 'ondemandscans'
-		);
+		); */
 
 		JHtmlSidebar::addEntry(
             JText::_('COM_JHACKGUARD_TITLE_LOGS'),
