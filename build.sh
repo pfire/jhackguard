@@ -30,7 +30,12 @@ cd ../
 zip -r pkg_jhackguard.zip *
 wait
 
+# Check if file already exists and removes it.
 cd ../../
+if [ -f pkg_jhackguard.zip ]; then
+	rm -f pkg_jhackguard.zip
+fi
+
 mv packages/pkg_jhackguard-2.2.3/pkg_jhackguard.zip ./
 
 # Clean up the packages folder.
