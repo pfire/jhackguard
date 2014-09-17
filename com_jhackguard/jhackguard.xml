@@ -32,7 +32,7 @@
 			<menu link="option=com_jhackguard&amp;view=outputfilters" view="outputfilters" img="components/com_jhackguard/assets/images/s_outputfilters.png" alt="Jhackguard/Outputfilters">COM_JHACKGUARD_TITLE_OUTPUTFILTERS</menu>
 
 			<menu link="option=com_jhackguard&amp;view=botscoutrecords" view="botscoutrecords" img="components/com_jhackguard/assets/images/s_botscoutrecords.png" alt="Jhackguard/Botscoutrecords">COM_JHACKGUARD_TITLE_BOTSCOUTRECORDS</menu>
-
+			<menu link="option=com_jhackguard&amp;view=filtermaintenance" view="filtermaintenance" img="components/com_jhackguard/assets/images/s_logs.png" alt="Jhackguard/Filtermaintenance">COM_JHACKGUARD_TITLE_FILTERMAINTENANCE</menu>
 			<menu link="option=com_jhackguard&amp;view=logs" view="logs" img="components/com_jhackguard/assets/images/s_logs.png" alt="Jhackguard/Logs">COM_JHACKGUARD_TITLE_LOGS</menu>
 
 

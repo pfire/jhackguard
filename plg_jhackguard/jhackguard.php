@@ -320,6 +320,16 @@ class PlgSystemJhackguard extends JPlugin
             }
         }
         /* Administrator secret word checks end */
+
+	/* Filter Administrator panel, jHackGuard pages. We do not want to filter our own content, after all */
+	if(JFactory::getApplication()->isAdmin() AND !JFactory::getUser()->guest)
+	{
+		if(isset($_REQUEST['option']) AND $_REQUEST['option'] == "com_jhackguard")
+		{
+			$this->add_log('Admin page com_jhackguard is whitelisted. Filters skipped.','debug');
+			return 0;
+		}
+	}
         
         /* Input filters Start */
         if(file_exists(JPATH_ADMINISTRATOR.'/components/com_jhackguard/data/input_rules.php') AND !file_exists(JPATH_ADMINISTRATOR.'/components/com_jhackguard/data/.disable_input_rules'))
