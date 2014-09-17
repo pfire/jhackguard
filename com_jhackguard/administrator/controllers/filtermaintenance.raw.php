@@ -211,6 +211,10 @@ public function rule_".$record->id."(){
                     if(file_exists(JPATH_ADMINISTRATOR.'/components/com_jhackguard/data/.rules_need_update')){
                         unlink(JPATH_ADMINISTRATOR.'/components/com_jhackguard/data/.rules_need_update');
                     }
+		    
+		if(file_exists(JPATH_ADMINISTRATOR.'/components/com_jhackguard/data/.rules_updated_timestamp')){
+	        	unlink(JPATH_ADMINISTRATOR.'/components/com_jhackguard/data/.rules_updated_timestamp');
+        	}
                 }
             }
         echo json_encode(array('success'=>$success, 'msg'=>$msg));
