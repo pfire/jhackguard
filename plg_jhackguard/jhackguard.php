@@ -195,7 +195,7 @@ class PlgSystemJhackguard extends JPlugin
     public function onAfterInitialise($args=array())
     {
         //Are we enabled?
-        if(!$this->params->get('enabled',1))
+        if(!$this->params->get('enabled',0))
         {
             return 0;
         }

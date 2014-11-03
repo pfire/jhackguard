@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.1" type="plugin" group="system" method="upgrade">
-    <name>JHackGuard Plugin</name>
-    <author>Valeri Markov</author>
+	<name>JHackGuard Plugin</name>
+	<author>Valeri Markov</author>
 	<creationDate>Aug 2013</creationDate>
 	<copyright>Copyright (C) 2013 SiteGround LLC. </copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
@@ -13,8 +13,11 @@
 		<filename plugin="jhackguard">jhackguard.php</filename>
 		<filename>index.html</filename>
 		<filename>LICENSE.txt</filename>
+		<filename>installer.php</filename>
 	</files>
+<!-- 	<scriptfile>installer.php</scriptfile> //This is used only for upgrading from 1.x version, where we need to install the component as well -->
 	<updateservers>
                 <server type="extension" name="jHackGuard Plugin Updates">http://www.jhackguard.com/updates/plg_jhackguard.xml</server>
         </updateservers>
+
 </extension>

@@ -1,18 +1,11 @@
 #!/bin/bash
 
 # Some fancy vars here :)
-BEEP="\x07"
 ESC="\x1b["
-RED=$ESC"31;01m"
 GREEN=$ESC"32;01m"
-YELLOW=$ESC"33;01m"
 DBLUE=$ESC"34;01m"
-MAGENTA=$ESC"35;01m"
-BLUE=$ESC"36;01m"
 WHITE=$ESC"37;01m"
-GREY=$ESC"30;01m"
 RESET=$ESC"39;49;00m"
-BOLD="\033[1m"
 
 
 function show_info {
@@ -29,7 +22,7 @@ show_info "Creating component archive" "Done"
 
 # Build the plugin
 cd ../plg_jhackguard/
-zip -q plg_jhackguard.zip *
+zip -qr plg_jhackguard.zip *
 wait;
 show_info "Creating plugin archive" "Done"
 
