@@ -38,9 +38,6 @@ CREATE TABLE IF NOT EXISTS `#__jhackguard_ip_filters` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
-INSERT INTO `#__jhackguard_ip_filters` (`id`, `ordering`, `state`, `checked_out`, `checked_out_time`, `created_by`, `ip`, `expires`, `rule_type`) VALUES
-(1, 2, 1, 0, '0000-00-00 00:00:00', 328, '127.0.0.1', '0000-00-00', 'wl');
-
 CREATE TABLE IF NOT EXISTS `#__jhackguard_logs` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `severity` varchar(255) NOT NULL,

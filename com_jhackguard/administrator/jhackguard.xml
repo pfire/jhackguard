@@ -20,6 +20,13 @@
             <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
         </sql>
     </uninstall>
+    <update> <!-- Runs on update, just in case the tables have been lost, or upgrading from 1.x version -->
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </update>
+
+
 
     <administration>
         <menu img="components/com_jhackguard/assets/images/s_com_jhackguard.png" >COM_JHACKGUARD</menu>
