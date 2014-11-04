@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @version     2.2.3
+ * @version     2.0.0
  * @package     com_jhackguard
  * @copyright   Copyright (C) 2013. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt

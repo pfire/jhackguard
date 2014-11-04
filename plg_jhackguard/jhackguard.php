@@ -1,6 +1,6 @@
 <?php
 /**
- * @version     2.2.3
+ * @version     2.0.0
  * @package     plg_jhackguard
  * @copyright   Copyright (C) 2013. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
@@ -73,7 +73,7 @@ class PlgSystemJhackguard extends JPlugin
 
         //Run output filters. We do not wish these to be applied to the administrator section however
         //since replacing the data will break the functionality of the output filters option itself.
-        $app =& JFactory::getApplication();
+        $app = JFactory::getApplication();
         if ($app->isAdmin())
         {
             return true;
@@ -99,7 +99,13 @@ class PlgSystemJhackguard extends JPlugin
             $count = 0;
 
             //The actual replacement...
-            $output = preg_replace($item->regex, $item->replacement, $output, -1, $count);
+            $poutput = preg_replace($item->regex, $item->replacement, $output, -1, $count);
+            if($poutput != NULL)
+            {
+                $output = $poutput;
+                unset($poutput);
+            }
+
             
             //Check if we did any replacement.
             if($count > 0)
@@ -248,7 +254,7 @@ class PlgSystemJhackguard extends JPlugin
         /* Maintenance steps end */
 
         /* Whitelisted Groups Check */
-        $user =& JFactory::getUser();
+        $user = JFactory::getUser();
         $whg = $this->params->get('whitelisted_groups',array());
         foreach($user->groups as $g)
         {
