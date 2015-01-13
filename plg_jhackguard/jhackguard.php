@@ -464,12 +464,12 @@ class PlgSystemJhackguard extends JPlugin
         	curl_close($ch);
         }
         $botdata = explode('|', $returned_data); 
+
         //Check for errors 
-        if($botdata[0] == "!")
-        {
+        if(substr($returned_data, 0,1) == '!'){
             //This is bad. There is an error.
             $this->add_log('Botscout returned an error: '.$returned_data,'debug');
-            return 0;
+            return false;
         }
         
         $bot_entry = new stdClass();
