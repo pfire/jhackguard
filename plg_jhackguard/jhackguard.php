@@ -1,6 +1,6 @@
 <?php
 /**
- * @version     2.0.0
+ * @version     2.0.1
  * @package     plg_jhackguard
  * @copyright   Copyright (C) 2013. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
@@ -472,17 +472,25 @@ class PlgSystemJhackguard extends JPlugin
             return false;
         }
         
-        $bot_entry = new stdClass();
-        $bot_entry->state = 1;
-        $bot_entry->result = $botdata[0];
-        $bot_entry->expires  = date('Y-m-d H:i:s',mktime(0, 0, 0, date("m")  , date("d")+1, date("Y")));
-        $bot_entry->ip_address = $_SERVER['REMOTE_ADDR']; //TODO: Shouldn't we check this value first?
-        JFactory::getDbo()->insertObject('#__jhackguard_bot_scout', $bot_entry);
-        
+
+        // Add a database cache record and set the runtime variable with the result of the returned data.
         if($botdata[0] == "Y")
         {
             $this->bot_scout_result = 1;
-        } 
+            $bot_entry = new stdClass();
+            $bot_entry->state = 1;
+            $bot_entry->result = "Y";
+            $bot_entry->expires  = date('Y-m-d H:i:s',mktime(0, 0, 0, date("m")  , date("d")+1, date("Y")));
+            $bot_entry->ip_address = $_SERVER['REMOTE_ADDR']; //TODO: Shouldn't we check this value first?
+            JFactory::getDbo()->insertObject('#__jhackguard_bot_scout', $bot_entry);
+        } else {
+            $bot_entry = new stdClass();
+            $bot_entry->state = 1;
+            $bot_entry->result = "N";
+            $bot_entry->expires  = date('Y-m-d H:i:s',mktime(0, 0, 0, date("m")  , date("d")+1, date("Y")));
+            $bot_entry->ip_address = $_SERVER['REMOTE_ADDR']; //TODO: Shouldn't we check this value first?
+            JFactory::getDbo()->insertObject('#__jhackguard_bot_scout', $bot_entry);
+        }
         return TRUE;
     }
     
@@ -506,11 +514,12 @@ class PlgSystemJhackguard extends JPlugin
             return FALSE;
         } else {
             $this->add_log('Found BotScout cache record. No lookup is required.','debug');
-            if(strtolower($result->result) == "n")
+            // Aug 6, 2015. Changed the default behavior from listed to not listed.
+            if(strtolower($result->result) == "y")
             {
-                $this->bot_scout_result = 0;
-            } else {
                 $this->bot_scout_result = 1;
+            } else {
+                $this->bot_scout_result = 0;
             }
             return TRUE;
         }

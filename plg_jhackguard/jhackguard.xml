@@ -17,7 +17,6 @@
 	</files>
 <!-- 	<scriptfile>installer.php</scriptfile> //This is used only for upgrading from 1.x version, where we need to install the component as well -->
 	<updateservers>
-                <server type="extension" name="jHackGuard Plugin Updates">http://www.jhackguard.com/updates/plg_jhackguard.xml</server>
-        </updateservers>
-
+        <server type="extension" name="jHackGuard Plugin Updates">http://www.jhackguard.com/updates/plg_jhackguard.xml</server>
+    </updateservers>
 </extension>
