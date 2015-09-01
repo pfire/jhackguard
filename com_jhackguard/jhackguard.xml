@@ -7,14 +7,13 @@
     <author>Valeri Markov</author>
     <authorEmail>val@jhackguard.com</authorEmail>
     <authorUrl>http://www.jhackguard.com/</authorUrl>
-    <version>2.0.0</version>
+    <version>2.0.2</version>
     <description>jHackGuard is a Joomla security plugin, protecting your website from malicious code, SQL injections and XSS attacks.</description>
     
     <install> <!-- Runs on install -->
         <sql>
             <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
-        </sql>
-    </install>
+        </sql>    </install>
     <uninstall> <!-- Runs on uninstall -->
         <sql>
             <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
@@ -28,18 +27,11 @@
     <administration>
         <menu img="components/com_jhackguard/assets/images/s_com_jhackguard.png" >COM_JHACKGUARD</menu>
         <submenu>
-            
 			<menu link="option=com_jhackguard&amp;view=ipfilters" view="ipfilters" img="components/com_jhackguard/assets/images/s_ipfilters.png" alt="Jhackguard/Ipfilters">COM_JHACKGUARD_TITLE_IPFILTERS</menu>
-
 			<menu link="option=com_jhackguard&amp;view=inputfilters" view="inputfilters" img="components/com_jhackguard/assets/images/s_inputfilters.png" alt="Jhackguard/Inputfilters">COM_JHACKGUARD_TITLE_INPUTFILTERS</menu>
-
-			<menu link="option=com_jhackguard&amp;view=outputfilters" view="outputfilters" img="components/com_jhackguard/assets/images/s_outputfilters.png" alt="Jhackguard/Outputfilters">COM_JHACKGUARD_TITLE_OUTPUTFILTERS</menu>
-
-			<menu link="option=com_jhackguard&amp;view=botscoutrecords" view="botscoutrecords" img="components/com_jhackguard/assets/images/s_botscoutrecords.png" alt="Jhackguard/Botscoutrecords">COM_JHACKGUARD_TITLE_BOTSCOUTRECORDS</menu>
-			<menu link="option=com_jhackguard&amp;view=filtermaintenance" view="filtermaintenance" img="components/com_jhackguard/assets/images/s_logs.png" alt="Jhackguard/Filtermaintenance">COM_JHACKGUARD_TITLE_FILTERMAINTENANCE</menu>
+            <menu link="option=com_jhackguard&amp;view=outputfilters" view="outputfilters" img="components/com_jhackguard/assets/images/s_outputfilters.png" alt="Jhackguard/Outputfilters">COM_JHACKGUARD_TITLE_OUTPUTFILTERS</menu>
+            <menu link="option=com_jhackguard&amp;view=filtermaintenance" view="filtermaintenance" img="components/com_jhackguard/assets/images/s_logs.png" alt="Jhackguard/Filtermaintenance">COM_JHACKGUARD_TITLE_FILTERMAINTENANCE</menu>
 			<menu link="option=com_jhackguard&amp;view=logs" view="logs" img="components/com_jhackguard/assets/images/s_logs.png" alt="Jhackguard/Logs">COM_JHACKGUARD_TITLE_LOGS</menu>
-
-
         </submenu>
         <files folder="administrator">
             <filename>access.xml</filename>

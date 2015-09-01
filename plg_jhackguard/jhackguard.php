@@ -25,9 +25,6 @@ class PlgSystemJhackguard extends JPlugin
     private $ip_found = 0;
     private $ip_type = 'bl';
     
-    //Botscout check variables
-    private $bot_scout_result = 0;
-    
     public function __construct(&$subject, $config = array())
     {
         parent::__construct($subject, $config);
@@ -116,87 +113,6 @@ class PlgSystemJhackguard extends JPlugin
         //Set the changed body of the document.
         JResponse::setBody($output);
     }
-    
-    public function onContentPrepareData($context, $data)
-    {
-        //Should we try and use BotScout for user registrations?
-        if(!$this->params->get('botscout_user_registration',0))
-        {
-            return $data;
-        }
-
-        //We only need the com_users.registration page.
-        if($context !== "com_users.registration")
-        {
-            return $data;
-        }
-
-        //And we only need to fire the trigger if we are on the registration task.
-        if(is_array($_POST) AND isset($_POST['task']) AND $_POST['task'] == "registration.register")
-        {
-
-            //Yup.. right here.
-            //We also need to extract the data out of it.
-            $username = "";
-            $email = "";
-
-            if(isset($data->username) and strlen($data->username) >0)
-            {
-                $username = $data->username;
-            }
-
-            if(isset($data->email1) AND isset($data->email2) AND strlen($data->email1) > 0)
-            {
-                if($data->email1 == $data->email2)
-                {
-                    $email = $data->email1;
-                }
-
-            }
-            //Verify this...
-            if(strlen($username) > 0 and strlen($email) > 0)
-            {
-                if(strlen($this->params->get('botscout_api','')) < 2)
-                {
-                    $this->add_log('No botscout API key present, but botscout checks turned on.','debug');
-                    return $data;
-                }
-                
-                //Build the test string.
-                $test_string = "http://botscout.com/test/?multi&mail=".urlencode($email)."&name=".urlencode($username)."&ip=".$_SERVER['REMOTE_ADDR']."&key=".$this->params->get('botscout_api','');
-
-                if(function_exists('file_get_contents')){
-                    $returned_data = file_get_contents($test_string);
-                }else{
-                    $ch = curl_init($test_string);
-                    curl_setopt($ch, CURLOPT_HEADER, 0);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                    $returned_data = curl_exec($ch);
-                    curl_close($ch);
-                }
-                $botdata = explode('|', $returned_data); 
-                //Check for errors 
-                if($botdata[0] == "!")
-                {
-                    //This is bad. There is an error.
-                    $this->add_log('Botscout returned an error: '.$returned_data,'debug');
-                    return $data;
-                }
-                //Check for positive answer.
-                if($botdata[0] == "Y")
-                {
-                    //Hit.. 
-                    JFactory::getApplication()->enqueueMessage("Registration failed. Data matched in botscout.com database.");
-                    JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_users&view=registration', false));
-                    //Well.... die!
-                    die();
-                }
-            } 
-            //Perhaps it wasn't the users registration page... Silently ignore this problem.
-            return $data;
-        }
-        
-    }
 
     public function onAfterInitialise($args=array())
     {
@@ -240,17 +156,6 @@ class PlgSystemJhackguard extends JPlugin
             $db->query();
             $this->add_log('IP filters garbage collector ran.','debug');
         }
-        
-        //Clear botscout cached records (probability: 50%)
-        if($probability < 51)
-        {
-            $query = $db->getQuery(true);      
-            $query->delete($db->quoteName('#__jhackguard_bot_scout'));
-            $query->where($db->quoteName('expires') . ' <= CURRENT_DATE');
-            $db->setQuery($query);
-            $db->query();
-            $this->add_log('BotScout garbage collector ran.','debug');
-        }
         /* Maintenance steps end */
 
         /* Whitelisted Groups Check */
@@ -278,25 +183,7 @@ class PlgSystemJhackguard extends JPlugin
             $this->add_log('Found blacklisted IP address. Script terminated.','standard');
             die(include_once(JPATH_ADMINISTRATOR.'/components/com_jhackguard/blocked.html'));
         }
-        
-        /* Botscout checks */
-        if($this->params->get('botscout_enabled',1))
-        {
-            //Botscout is enabled. Check for a cached record.
-            if(!$this->bot_scout_cache())
-            {
-                //No cache available. Fetch and insert one.
-                $this->bot_scout_check();
-            }
-            
-            if($this->bot_scout_result)
-            {
-                $this->add_log('Found BotScout listed IP address. Script terminated.','standard');
-                die(include_once(JPATH_ADMINISTRATOR.'/components/com_jhackguard/botscout.html'));
-            }
-        }
-        /* Botscout checks end */
-        
+
         /* Administrator secret key addon */
         if($this->params->get('admin_protection',0))
         {
@@ -438,91 +325,6 @@ class PlgSystemJhackguard extends JPlugin
         } //End if use_cymru option.
 
         //END OF UPLOADED FILES CHECKS
-        
-    }
-    
-    public function bot_scout_check()
-    {
-        $this->add_log('No BotScout cache available. Performing lookup...','debug');
-        //Check if API key is filled in.
-        if(strlen($this->params->get('botscout_api','')) < 2)
-        {
-            $this->add_log('No botscout API key present, but botscout checks turned on.','debug');
-            return 0;
-        }
-        
-        //Build the test string.
-        $test_string = "http://botscout.com/test/?ip=".$_SERVER['REMOTE_ADDR']."&key=".$this->params->get('botscout_api','');
-        
-        if(function_exists('file_get_contents')){
-        	$returned_data = file_get_contents($test_string);
-        }else{
-        	$ch = curl_init($test_string);
-        	curl_setopt($ch, CURLOPT_HEADER, 0);
-        	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        	$returned_data = curl_exec($ch);
-        	curl_close($ch);
-        }
-        $botdata = explode('|', $returned_data); 
-
-        //Check for errors 
-        if(substr($returned_data, 0,1) == '!'){
-            //This is bad. There is an error.
-            $this->add_log('Botscout returned an error: '.$returned_data,'debug');
-            return false;
-        }
-        
-
-        // Add a database cache record and set the runtime variable with the result of the returned data.
-        if($botdata[0] == "Y")
-        {
-            $this->bot_scout_result = 1;
-            $bot_entry = new stdClass();
-            $bot_entry->state = 1;
-            $bot_entry->result = "Y";
-            $bot_entry->expires  = date('Y-m-d H:i:s',mktime(0, 0, 0, date("m")  , date("d")+1, date("Y")));
-            $bot_entry->ip_address = $_SERVER['REMOTE_ADDR']; //TODO: Shouldn't we check this value first?
-            JFactory::getDbo()->insertObject('#__jhackguard_bot_scout', $bot_entry);
-        } else {
-            $bot_entry = new stdClass();
-            $bot_entry->state = 1;
-            $bot_entry->result = "N";
-            $bot_entry->expires  = date('Y-m-d H:i:s',mktime(0, 0, 0, date("m")  , date("d")+1, date("Y")));
-            $bot_entry->ip_address = $_SERVER['REMOTE_ADDR']; //TODO: Shouldn't we check this value first?
-            JFactory::getDbo()->insertObject('#__jhackguard_bot_scout', $bot_entry);
-        }
-        return TRUE;
-    }
-    
-    public function bot_scout_cache()
-    {
-        // Get a db connection.
-        $db = JFactory::getDbo();
-        
-        // Create a new query object.
-        $query = $db->getQuery(true);
-        $query->select($db->quoteName(array('result')));
-        $query->from($db->quoteName('#__jhackguard_bot_scout'));
-        $query->where($db->quoteName('ip_address') . ' = '. $db->quote($_SERVER['REMOTE_ADDR']));
-        $query->where($db->quoteName('expires') . ' > '.$db->quote(date('Y-m-d H:i:s')));
-        $query->where($db->quoteName('state') . ' = 1');
-        $query->order('ordering ASC');
-        
-        $db->setQuery($query);
-        $result = $db->loadObject();
-        if(is_null($result)){
-            return FALSE;
-        } else {
-            $this->add_log('Found BotScout cache record. No lookup is required.','debug');
-            // Aug 6, 2015. Changed the default behavior from listed to not listed.
-            if(strtolower($result->result) == "y")
-            {
-                $this->bot_scout_result = 1;
-            } else {
-                $this->bot_scout_result = 0;
-            }
-            return TRUE;
-        }
     }
     
     public function ip_is($type)

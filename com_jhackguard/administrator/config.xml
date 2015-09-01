@@ -98,39 +98,6 @@
         </field> 
         
     </fieldset>
-    
-    <fieldset name="botscout"
-        description="COM_JHACKGUARD_BOTSCOUT_FIELDSET_DESCRIPTION"
-        label="COM_JHACKGUARD_BOTSCOUT_FIELDSET_LABEL"
-    >
-        <field name="botscout_enabled"
-             type="radio"
-             class="btn-group"
-             default="0"
-             label="COM_JHACKGUARD_BOTSCOUT_ENABLED"
-             description="COM_JHACKGUARD_BOTSCOUT_ENABLED_DESC">
-                 <option value="1">JYES</option>
-                 <option value="0">JNO</option>
-         </field>
-         
-         <field name="botscout_user_registration"
-             type="radio"
-             class="btn-group"
-             default="0"
-             label="COM_JHACKGUARD_BOTSCOUT_USER_REGISTRATION"
-             description="COM_JHACKGUARD_BOTSCOUT_USER_REGISTRATION_DESC">
-                 <option value="1">JYES</option>
-                 <option value="0">JNO</option>
-         </field>
-        
-        <field name="botscout_api" 
-            type="text" 
-            default="" 
-            label="COM_JHACKGUARD_BOTSCOUT_API" 
-            description="COM_JHACKGUARD_BOTSCOUT_API_DESC" 
-            size="10" />
-        
-    </fieldset>
 
 	<fieldset name="permissions"
 		description="JCONFIG_PERMISSIONS_DESC"
