@@ -36,7 +36,6 @@
         <files folder="administrator">
             <filename>access.xml</filename>
 	    <filename>blocked.html</filename>
- 	    <filename>botscout.html</filename>
 	    <filename>filter_match_error.html</filename>
 	    <filename>jsonrpc.php</filename>
             <filename>config.xml</filename>
