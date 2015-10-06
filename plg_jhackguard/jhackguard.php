@@ -305,12 +305,15 @@ class PlgSystemJhackguard extends JPlugin
                         {
                             foreach($file['tmp_name'] as $tmp_file)
                             {
-                                $hash = md5_file($tmp_file);
-                                if(checkdnsrr ($hash.".malware.hash.cymru.com","A"))
+                                if($tmp_file != NULL)
                                 {
-                                    JFactory::getApplication()->enqueueMessage("File upload denied by JHackGuard. Cymru malware hash database hit.","warning");
-                                    $this->add_log('Possible malicious file upload (CYMRU Hash DB Hit).File deleted.','standard');
-                                    $hit = 1;
+                                    $hash = md5_file($tmp_file);
+                                    if(checkdnsrr ($hash.".malware.hash.cymru.com","A"))
+                                    {
+                                        JFactory::getApplication()->enqueueMessage("File upload denied by JHackGuard. Cymru malware hash database hit.","warning");
+                                        $this->add_log('Possible malicious file upload (CYMRU Hash DB Hit).File deleted.','standard');
+                                        $hit = 1;
+                                    }
                                 }
                             }
                         }
