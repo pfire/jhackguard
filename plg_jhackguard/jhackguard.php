@@ -1,6 +1,6 @@
 <?php
 /**
- * @version     2.0.1
+ * @version     2.0.4
  * @package     plg_jhackguard
  * @copyright   Copyright (C) 2013. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
@@ -308,7 +308,7 @@ class PlgSystemJhackguard extends JPlugin
                                 if($tmp_file != NULL)
                                 {
                                     $hash = md5_file($tmp_file);
-                                    if(checkdnsrr ($hash.".malware.hash.cymru.com","A"))
+                                    if(checkdnsrr ($hash.".malware.hash.cymru.com.","A"))
                                     {
                                         JFactory::getApplication()->enqueueMessage("File upload denied by JHackGuard. Cymru malware hash database hit.","warning");
                                         $this->add_log('Possible malicious file upload (CYMRU Hash DB Hit).File deleted.','standard');
